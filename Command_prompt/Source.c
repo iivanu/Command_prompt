@@ -6,9 +6,15 @@ int main()
 	Position curretDir = root;
 	position head = AllocationStack();
 	char *name;
+	char *selection;
+	char *token;
+	char *buffer;
 	int i = -1;
 
-	name = (char*)malloc(21 * sizeof(char));
+	//name = (char*)malloc(21 * sizeof(char));
+	//selection = (char*)malloc(21 * sizeof(char));
+	buffer = (char*)malloc(21 * sizeof(char));
+
 	root->FChild = NULL;
 	root->NBrother = NULL;
 	root->name = (char*)malloc(5 * sizeof(char));
@@ -20,41 +26,31 @@ int main()
 	while (i != 0)
 	{
 		printf("\n\nYou are in %s directory:\n", curretDir->name);
-		printf("Select operation:\n");
-		printf("1. md (Make directory)\n");
-		printf("2. cd (Change directory)\n");
-		printf("3. cd.. (Previous directory)\n");
-		printf("4. dir (List directories)\n");
-		printf("0. exit\n");
-		printf("Your selection: ");
-		scanf(" %d", &i);
+		scanf(" %[^\n]", buffer);
+		
+		token = strtok(buffer, " ");
+		selection = token;
+		token = strtok(NULL, " ");
+		name = token;
 
-		switch (i)
-		{
-		case 1:
-			printf("md ");
-			scanf(" %s", name);
+
+		if (strcmp(selection, "md") == 0)
 			MakeDirectory(curretDir, name);
-			break;
-		case 2:
-			printf("cd ");
-			scanf(" %s", name);
+
+		else if (strcmp(selection, "cd") == 0)
 			curretDir = ChangeDirectory(curretDir, head, name);
-			break;
-		case 3:
-			printf("cd..\n");
+
+		else if (strcmp(selection, "cd..") == 0)
 			curretDir = popStack(head);
-			break;
-		case 4:
-			printf("dir\n");
-			ListDirectory(curretDir);
-			break;
-		case 0:
-			break;
-		default:
-			printf("Unknown command!!\n");
-			break;
-		}
+
+		else if (strcmp(selection, "dir") == 0)
+			ListDirectory(curretDir, head);
+
+		else if (strcmp(selection, "exit") == 0)
+			i = 0;
+
+		else
+			printf("'%s' is not recognized as an internal or external command, operable program or batch file.\n", selection);	
 	}
 
 	GarbageCollector(root);
