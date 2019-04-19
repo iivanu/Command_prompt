@@ -71,7 +71,7 @@ Position ChangeDirectory(Position curretDir, position stack, char* name)
 
 	if (x == NULL)
 	{
-		printf("\nDirectory %s do not exist!!\n", name);
+		printf("\nThe system cannot find the path specified.\n", name);
 		return curretDir;
 	}
 
@@ -103,7 +103,7 @@ int pushStack(Position tree, position stack)
 
 	return 0;
 }
-int ListDirectory(Position tree)
+int ListDirectory(Position tree, position stack)
 {
 	Position x = tree->FChild;
 
@@ -113,7 +113,7 @@ int ListDirectory(Position tree)
 		return -1;
 	}
 
-	printf("\nList directories:\n");
+	printf("\nDirectory of %s\n", tree->name);
 	while (x != NULL)
 	{
 		printf("%s\n", x->name);

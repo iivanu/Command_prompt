@@ -47,12 +47,12 @@ int main()
 			break;
 		case 4:
 			printf("dir\n");
-			ListDirectory(curretDir);
+			ListDirectory(curretDir, head);
 			break;
 		case 0:
 			break;
 		default:
-			printf("Unknown command!!\n");
+			printf("'%d' is not recognized as an internal or external command, operable program or batch file.\n", i);
 			break;
 		}
 	}

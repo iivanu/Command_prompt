@@ -25,5 +25,5 @@ Position ChangeDirectory(Position, position, char*);
 Position popStack(position);
 int pushStack(Position, position);
 int MakeDirectory(Position, char*);
-int ListDirectory(Position);
+int ListDirectory(Position, position);
 int GarbageCollector(Position);
