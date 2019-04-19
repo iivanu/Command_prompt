@@ -6,7 +6,7 @@ Position AllocationTree()
 	
 	if (q == NULL)
 	{
-		printf("Memorija nije alocirana!!\n");
+		printf("Memory not allocated!!\n");
 		return NULL;
 	}
 
@@ -22,7 +22,7 @@ position AllocationStack()
 	
 	if (q == NULL)
 	{
-		printf("Memorija nije alocirana!!\n");
+		printf("Memory not allocated!!\n");
 		return NULL;
 	}
 
@@ -36,7 +36,7 @@ int MakeDirectory(Position Tree, char* name)
 	q->name = (char*)malloc(strlen(name) + 1);
 	strcpy(q->name, name);
 	
-	printf("\nDirektorij %s je napravljen!!\n", name);
+	printf("\nDirectory %s is created!!\n", name);
 	
 	if (Tree->FChild == NULL)
 	{
@@ -71,7 +71,7 @@ Position ChangeDirectory(Position curretDir, position stack, char* name)
 
 	if (x == NULL)
 	{
-		printf("\nNe postoji taj direktorij!!\n");
+		printf("\nDirectory %s do not exist!!\n", name);
 		return curretDir;
 	}
 
@@ -85,7 +85,7 @@ Position popStack(position stack)
 	position tmp = stack->Next;
 	
 	if (tmp->Next == NULL)
-		printf("\nVec se nalazite u root direktoriju!!\n");
+		printf("\nYou are already in root directory!!\n");
 
 	else
 		stack->Next = tmp->Next;
@@ -109,11 +109,11 @@ int ListDirectory(Position tree)
 
 	if (x == NULL)
 	{
-		printf("\nDirektorij je prazan!!\n");
+		printf("\nDirectory is emtpy!!\n");
 		return -1;
 	}
 
-	printf("\nLista direktorija:\n");
+	printf("\nList directories:\n");
 	while (x != NULL)
 	{
 		printf("%s\n", x->name);

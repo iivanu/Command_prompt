@@ -19,14 +19,14 @@ int main()
 
 	while (i != 0)
 	{
-		printf("\n\nNalazite se u %s direktoriju:\n", curretDir->name);
-		printf("Odaberite radnju:\n");
+		printf("\n\nYou are in %s directory:\n", curretDir->name);
+		printf("Select operation:\n");
 		printf("1. md (Make directory)\n");
 		printf("2. cd (Change directory)\n");
 		printf("3. cd.. (Previous directory)\n");
 		printf("4. dir (List directories)\n");
 		printf("0. exit\n");
-		printf("Vas odabir: ");
+		printf("Your selection: ");
 		scanf(" %d", &i);
 
 		switch (i)
@@ -52,7 +52,7 @@ int main()
 		case 0:
 			break;
 		default:
-			printf("Nepoznata naredba!!\n");
+			printf("Unknown command!!\n");
 			break;
 		}
 	}
