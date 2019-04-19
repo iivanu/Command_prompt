@@ -36,7 +36,7 @@ int MakeDirectory(Position Tree, char* name)
 	q->name = (char*)malloc(strlen(name) + 1);
 	strcpy(q->name, name);
 	
-	printf("\nDirectory %s is created!!\n", name);
+	printf("\nDirectory %s is created!!", name);
 	
 	if (Tree->FChild == NULL)
 	{
@@ -71,7 +71,7 @@ Position ChangeDirectory(Position curretDir, position stack, char* name)
 
 	if (x == NULL)
 	{
-		printf("\nDirectory %s do not exist!!\n", name);
+		printf("\nThe system cannot find the path specified.\n", name);
 		return curretDir;
 	}
 
@@ -83,7 +83,7 @@ Position ChangeDirectory(Position curretDir, position stack, char* name)
 Position popStack(position stack)
 {
 	position tmp = stack->Next;
-	
+
 	if (tmp->Next == NULL)
 		printf("\nYou are already in root directory!!\n");
 
@@ -103,22 +103,19 @@ int pushStack(Position tree, position stack)
 
 	return 0;
 }
-int ListDirectory(Position tree)
+int ListDirectory(Position tree, position stack)
 {
 	Position x = tree->FChild;
+	int num = 0;
 
-	if (x == NULL)
-	{
-		printf("\nDirectory is emtpy!!\n");
-		return -1;
-	}
-
-	printf("\nList directories:\n");
+	printf("\nDirectory of %s:\n", tree->name);
 	while (x != NULL)
 	{
-		printf("%s\n", x->name);
+		printf("\t<DIR>\t%s\n", x->name);
+		num++;
 		x = x->NBrother;
 	}
+	printf("\t\t%d Dir(s)", num);
 
 	return 0;
 }
@@ -136,6 +133,17 @@ int GarbageCollector(Position P)
 
 	free(P->name);
 	free(P);
+
+	return 0;
+}
+
+int CallHelp()
+{
+	printf("\nFor more information on a specific command, type HELP command-name\n");
+	printf("md\tCreates a directory.\n");
+	printf("cd\tDisplays the name of or changes the current directory.\n");
+	printf("cd..\tReturn to previous directory\n");
+	printf("dir\tDisplays a list of files and subdirectories in a directory.\n\n");
 
 	return 0;
 }
