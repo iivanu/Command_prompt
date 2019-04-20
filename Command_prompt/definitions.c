@@ -103,6 +103,7 @@ int pushStack(Position tree, position stack)
 
 	return 0;
 }
+
 int ListDirectory(Position tree, position stack)
 {
 	Position x = tree->FChild;

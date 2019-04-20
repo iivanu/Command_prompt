@@ -17,7 +17,7 @@ int main()
 	root->name = (char*)malloc(5 * sizeof(char));
 	strcpy(root->name, "root");
 	head.Next = AllocationStack();
-	head.Next->tree = root;	//First on stack
+	head.Next->tree = root;
 	head.Next->Next = NULL;
 
 	while (i != 0)
@@ -54,5 +54,9 @@ int main()
 
 	GarbageCollector(root);
 	free(name);
+	free(selection);
+	free(token);
+	free(buffer);
+
 	return 0;
 }
