@@ -28,3 +28,5 @@ int MakeDirectory(Position, char*);
 int ListDirectory(Position);
 int GarbageCollector(Position);
 int CallHelp();
+int PrintDirectory(Position, position);
+int PrintDirectoryF(position);

@@ -22,7 +22,7 @@ int main()
 
 	while (i != 0)
 	{
-		printf("\n\nYou are in %s directory: ", curretDir->name);
+		PrintDirectory(curretDir, &head);
 		scanf(" %[^\n]", buffer);
 		
 		token = strtok(buffer, " ");

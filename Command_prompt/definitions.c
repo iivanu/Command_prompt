@@ -84,10 +84,7 @@ Position popStack(position stack)
 {
 	position tmp = stack->Next;
 
-	if (tmp->Next == NULL)
-		printf("\nYou are already in root directory!!\n");
-
-	else
+	if (tmp->Next != NULL)
 		stack->Next = tmp->Next;
 
 	return tmp->tree;
@@ -145,6 +142,30 @@ int CallHelp()
 	printf("cd\tDisplays the name of or changes the current directory.\n");
 	printf("cd..\tReturn to previous directory\n");
 	printf("dir\tDisplays a list of files and subdirectories in a directory.\n\n");
+
+	return 0;
+}
+
+int PrintDirectory(Position currentDir, position stack)
+{
+	if (stack->Next->Next == NULL)
+	{
+		printf("\n%s/\t", currentDir->name);
+		return 0;
+	}
+
+	printf("\n");
+	PrintDirectoryF(stack->Next);
+	printf("%s/\t", currentDir->name);
+
+}
+
+int PrintDirectoryF(position stack)
+{
+	if (stack->Next->Next != NULL)
+		PrintDirectoryF(stack->Next);
+
+	printf("%s/", stack->tree->name);
 
 	return 0;
 }
