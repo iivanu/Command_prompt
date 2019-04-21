@@ -22,7 +22,7 @@ typedef struct _stack
 Position AllocationTree();
 position AllocationStack();
 Position ChangeDirectory(Position, position, char*);
-Position popStack(position);
+Position popStack(position, Position);
 int pushStack(Position, position);
 int MakeDirectory(Position, char*);
 int ListDirectory(Position);

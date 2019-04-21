@@ -16,12 +16,11 @@ int main()
 	root->NBrother = NULL;
 	root->name = (char*)malloc(5 * sizeof(char));
 	strcpy(root->name, "root");
-	head.Next = AllocationStack();
-	head.Next->tree = root;
-	head.Next->Next = NULL;
+	head.Next = NULL;
 
 	while (i != 0)
 	{
+		printf("\n");
 		PrintDirectory(curretDir, &head);
 		scanf(" %[^\n]", buffer);
 		
@@ -37,7 +36,7 @@ int main()
 			curretDir = ChangeDirectory(curretDir, &head, name);
 
 		else if (strcmp(selection, "cd..") == 0)
-			curretDir = popStack(&head);
+			curretDir = popStack(&head, root);
 
 		else if (strcmp(selection, "dir") == 0)
 			ListDirectory(curretDir, &head);

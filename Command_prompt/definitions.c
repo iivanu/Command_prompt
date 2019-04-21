@@ -36,8 +36,6 @@ int MakeDirectory(Position Tree, char* name)
 	q->name = (char*)malloc(strlen(name) + 1);
 	strcpy(q->name, name);
 	
-	printf("\nDirectory %s is created!!", name);
-	
 	if (Tree->FChild == NULL)
 	{
 		Tree->FChild = q;
@@ -71,7 +69,7 @@ Position ChangeDirectory(Position curretDir, position stack, char* name)
 
 	if (x == NULL)
 	{
-		printf("\nThe system cannot find the path specified.\n", name);
+		printf("The system cannot find the path specified.\n", name);
 		return curretDir;
 	}
 
@@ -80,14 +78,17 @@ Position ChangeDirectory(Position curretDir, position stack, char* name)
 	return x;
 }
 
-Position popStack(position stack)
+Position popStack(position stack, Position root)
 {
 	position tmp = stack->Next;
 
-	if (tmp->Next != NULL)
+	if (tmp != NULL)
+	{
 		stack->Next = tmp->Next;
-
-	return tmp->tree;
+		return tmp->tree;
+	}
+		
+	return root;
 }
 
 int pushStack(Position tree, position stack)
@@ -106,14 +107,14 @@ int ListDirectory(Position tree, position stack)
 	Position x = tree->FChild;
 	int num = 0;
 
-	printf("\nDirectory of %s:\n", tree->name);
+	printf("Directory of %s:\n", tree->name);
 	while (x != NULL)
 	{
 		printf("\t<DIR>\t%s\n", x->name);
 		num++;
 		x = x->NBrother;
 	}
-	printf("\t\t%d Dir(s)", num);
+	printf("\t\t%d Dir(s)\n", num);
 
 	return 0;
 }
@@ -137,32 +138,31 @@ int GarbageCollector(Position P)
 
 int CallHelp()
 {
-	printf("\nFor more information on a specific command, type HELP command-name\n");
+	printf("For more information on a specific command, type HELP command-name\n");
 	printf("md\tCreates a directory.\n");
 	printf("cd\tDisplays the name of or changes the current directory.\n");
 	printf("cd..\tReturn to previous directory\n");
-	printf("dir\tDisplays a list of files and subdirectories in a directory.\n\n");
+	printf("dir\tDisplays a list of files and subdirectories in a directory.\n");
 
 	return 0;
 }
 
 int PrintDirectory(Position currentDir, position stack)
 {
-	if (stack->Next->Next == NULL)
+	if (stack->Next == NULL)
 	{
-		printf("\n%s/\t", currentDir->name);
+		printf("%s>", currentDir->name);
 		return 0;
 	}
 
-	printf("\n");
 	PrintDirectoryF(stack->Next);
-	printf("%s/\t", currentDir->name);
+	printf("%s>", currentDir->name);
 
 }
 
 int PrintDirectoryF(position stack)
 {
-	if (stack->Next->Next != NULL)
+	if (stack->Next != NULL)
 		PrintDirectoryF(stack->Next);
 
 	printf("%s/", stack->tree->name);
