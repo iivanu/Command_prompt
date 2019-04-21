@@ -152,7 +152,7 @@ int PrintDirectory(Position currentDir, position stack)
 {
 	if (stack->Next == NULL)
 	{
-		printf("%s>", currentDir->name);
+		printf("%s/>", currentDir->name);
 		return 0;
 	}
 

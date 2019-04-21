@@ -15,7 +15,7 @@ int main()
 	root->FChild = NULL;
 	root->NBrother = NULL;
 	root->name = (char*)malloc(5 * sizeof(char));
-	strcpy(root->name, "root");
+	strcpy(root->name, "C:");
 	head.Next = NULL;
 
 	while (i != 0)
