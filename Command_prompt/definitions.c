@@ -157,7 +157,6 @@ int PrintDirectory(Position currentDir, position stack)
 
 	PrintDirectoryF(stack->Next);
 	printf("%s>", currentDir->name);
-	gitt
 }
 
 int PrintDirectoryF(position stack)
