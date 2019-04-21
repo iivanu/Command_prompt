@@ -30,3 +30,4 @@ int GarbageCollector(Position);
 int CallHelp();
 int PrintDirectory(Position, position);
 int PrintDirectoryF(position);
+int RemoveDirectory(Position, char*);

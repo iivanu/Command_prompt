@@ -47,6 +47,9 @@ int main()
 		else if (strcmp(selection, "help") == 0)
 			CallHelp();
 
+		else if (strcmp(selection, "rd") == 0)
+			RemoveDirectory(curretDir, name);
+
 		else
 			printf("'%s' is not recognized as an internal or external command, operable program or batch file. Type 'help'.\n", selection);	
 	}

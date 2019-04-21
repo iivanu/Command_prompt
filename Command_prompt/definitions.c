@@ -143,6 +143,7 @@ int CallHelp()
 	printf("cd\tDisplays the name of or changes the current directory.\n");
 	printf("cd..\tReturn to previous directory\n");
 	printf("dir\tDisplays a list of files and subdirectories in a directory.\n");
+	printf("rd\tRemoves a directory.\n");
 
 	return 0;
 }
@@ -165,6 +166,37 @@ int PrintDirectoryF(position stack)
 		PrintDirectoryF(stack->Next);
 
 	printf("%s/", stack->tree->name);
+
+	return 0;
+}
+
+int RemoveDirectory(Position CurrentDirectory,char* name)
+{
+	Position x = CurrentDirectory->FChild;
+	Position tmp = NULL;
+
+	if (x != NULL && strcmp(x->name, name) == 0)
+	{
+		CurrentDirectory->FChild = x->NBrother;
+		GarbageCollector(x);
+		return 0;
+	}
+
+	while (x != NULL && strcmp(x->name, name) != 0)
+		x = x->NBrother;
+
+	if (x == NULL)
+	{
+		printf("The system cannot find the file specified.\n", name);
+		return -1;
+	}
+	
+	else
+	{
+		tmp = x->NBrother;
+		x->NBrother = tmp->NBrother;
+		GarbageCollector(tmp);
+	}
 
 	return 0;
 }
