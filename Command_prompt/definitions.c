@@ -182,11 +182,12 @@ int RemoveDirectory(Position CurrentDirectory,char* name)
 	if (x != NULL && strcmp(x->name, name) == 0)
 	{
 		CurrentDirectory->FChild = x->NBrother;
-		free(x);
+		x->NBrother = NULL;
+		GarbageCollector(x);
 		return 0;
 	}
 
-	while (x->NBrother != NULL && strcmp(x->NBrother->name, name) != 0)
+	while (x != NULL && x->NBrother != NULL && strcmp(x->NBrother->name, name) != 0)
 		x = x->NBrother;
 
 	if (x == NULL)
@@ -199,7 +200,8 @@ int RemoveDirectory(Position CurrentDirectory,char* name)
 	{
 		tmp = x->NBrother;
 		x->NBrother = tmp->NBrother;
-		free(tmp);		
+		tmp->NBrother = NULL;
+		GarbageCollector(tmp);		
 	}
 
 	return 0;
