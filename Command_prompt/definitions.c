@@ -152,7 +152,7 @@ int PrintDirectory(Position currentDir, position stack)
 {
 	if (stack->Next == NULL)
 	{
-		printf("%s/>", currentDir->name);
+		printf("%s:/>", currentDir->name);
 		return 0;
 	}
 
@@ -165,7 +165,11 @@ int PrintDirectoryF(position stack)
 	if (stack->Next != NULL)
 		PrintDirectoryF(stack->Next);
 
-	printf("%s/", stack->tree->name);
+	if(strcmp(stack->tree->name, "C")==0)
+		printf("%s:/", stack->tree->name);
+
+	else
+		printf("%s/", stack->tree->name);
 
 	return 0;
 }
@@ -178,11 +182,11 @@ int RemoveDirectory(Position CurrentDirectory,char* name)
 	if (x != NULL && strcmp(x->name, name) == 0)
 	{
 		CurrentDirectory->FChild = x->NBrother;
-		GarbageCollector(x);
+		free(x);
 		return 0;
 	}
 
-	while (x != NULL && strcmp(x->name, name) != 0)
+	while (x->NBrother != NULL && strcmp(x->NBrother->name, name) != 0)
 		x = x->NBrother;
 
 	if (x == NULL)
@@ -195,7 +199,7 @@ int RemoveDirectory(Position CurrentDirectory,char* name)
 	{
 		tmp = x->NBrother;
 		x->NBrother = tmp->NBrother;
-		GarbageCollector(tmp);
+		free(tmp);		
 	}
 
 	return 0;
