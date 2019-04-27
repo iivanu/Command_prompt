@@ -18,6 +18,8 @@ int main()
 	strcpy(root->name, "C");
 	head.Next = NULL;
 
+	printf("Microsoft Windows [Version 10.0.17763.437]\n(c) 2018. Microsoft Corporation. All rights reserved.\n");
+
 	while (i != 0)
 	{
 		printf("\n");
