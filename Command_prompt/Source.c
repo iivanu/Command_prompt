@@ -52,6 +52,9 @@ int main()
 		else if (strcmp(selection, "rd") == 0)
 			RemoveDirectory(curretDir, name);
 
+		else if (strcmp(selection, "cls") == 0)
+			system("cls");
+
 		else
 			printf("'%s' is not recognized as an internal or external command, operable program or batch file. Type 'help'.\n", selection);	
 	}
