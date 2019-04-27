@@ -42,8 +42,14 @@ int MakeDirectory(Position Tree, char* name)
 		return 0;
 	}
 
-	else if (strcmp(q->name, x->name) < 0)
-	{ 
+	else if (strcmp(q->name, x->name) < 0 || strcmp(q->name, x->name) == 0)
+	{
+		if (strcmp(q->name, x->name) == 0)
+		{
+			printf("A subdirectory or file %s already exists.\n", x->name);
+			GarbageCollector(q);
+			return 0;
+		}
 		q->NBrother = x;
 		Tree->FChild = q;
 		return 0;
@@ -54,6 +60,12 @@ int MakeDirectory(Position Tree, char* name)
 		while (x->NBrother != NULL && strcmp(q->name, x->NBrother->name) > 0)
 			x = x->NBrother;
 
+		if (x->NBrother != NULL && strcmp(q->name, x->NBrother->name) == 0)
+		{
+			printf("A subdirectory or file %s already exists.\n", x->NBrother->name);
+			GarbageCollector(q);
+			return 0;
+		}
 		q->NBrother = x->NBrother;
 		x->NBrother = q;
 	}
