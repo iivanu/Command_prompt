@@ -156,6 +156,7 @@ int CallHelp()
 	printf("cd..\tReturn to previous directory\n");
 	printf("dir\tDisplays a list of files and subdirectories in a directory.\n");
 	printf("rd\tRemoves a directory.\n");
+	printf("cls\tClears the screen.\n");
 
 	return 0;
 }
