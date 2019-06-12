@@ -1,3 +1,5 @@
+#ifndef HEADER_H
+#define HEADER_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,3 +33,4 @@ int CallHelp();
 int PrintDirectory(Position, position);
 int PrintDirectoryF(position);
 int RemoveDirectory(Position, char*);
+#endif
