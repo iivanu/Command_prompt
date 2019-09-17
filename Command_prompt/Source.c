@@ -10,14 +10,12 @@ int main()
 	char *token;
 	char *buffer;
 	int i = VALID;
-
 	buffer = (char*)malloc(21 * sizeof(char));
 	root->FChild = NULL;
 	root->NBrother = NULL;
 	root->name = (char*)malloc(5 * sizeof(char));
 	strcpy(root->name, "C");
 	head.Next = NULL;
-
 	while (i != INVALID) {
 		PrintDirectory(curretDir, &head);
 		scanf(" %[^\n]", buffer);
