@@ -4,23 +4,24 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define VALID 1
+#define INVALID 0
+#define OK 0
+#define EXIT_SUCCESS 0
+#define NOT_VALID -1
 struct _tree;
 typedef struct _tree* Position;
-typedef struct _tree
-{
+typedef struct _tree {
 	char* name;
 	Position FChild;
 	Position NBrother;
-}Tree;
-
+} Tree;
 struct _stack;
 typedef struct _stack* position;
-typedef struct _stack
-{
+typedef struct _stack {
 	Position tree;
 	position Next;
-}Stack;
-
+} Stack;
 Position AllocationTree();
 position AllocationStack();
 Position ChangeDirectory(Position, position, char*);
