@@ -5,10 +5,10 @@ int main()
 	Position root=(Position)malloc(sizeof(Tree));
 	Position curretDir = root;
 	Stack head;
-	char *name;
-	char *selection;
-	char *token;
-	char *buffer;
+	char* name;
+	char* selection;
+	char* token;
+	char* buffer;
 	int i = VALID;
 	buffer = (char*)malloc(21 * sizeof(char));
 	root->FChild = NULL;
@@ -43,7 +43,6 @@ int main()
 			printf("'%s' is not recognized as an internal or external command, operable program or batch file. Type 'help'.\n", selection);
 		printf("\n");
 	}
-
 	GarbageCollector(root);
 	free(name);
 	free(selection);

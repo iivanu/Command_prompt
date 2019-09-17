@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #define VALID 1
 #define INVALID 0
 #define OK 0

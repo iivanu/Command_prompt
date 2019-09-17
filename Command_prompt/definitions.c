@@ -106,7 +106,6 @@ int GarbageCollector(Position P) {
 }
 
 int CallHelp() {
-	printf("For more information on a specific command, type HELP command-name\n");
 	printf("md\tCreates a directory.\n");
 	printf("cd\tDisplays the name of or changes the current directory.\n");
 	printf("cd..\tReturn to previous directory\n");
