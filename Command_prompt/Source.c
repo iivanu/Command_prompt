@@ -43,6 +43,7 @@ int main()
 			printf("'%s' is not recognized as an internal or external command, operable program or batch file. Type 'help'.\n", selection);
 		printf("\n");
 	}
+
 	GarbageCollector(root);
 	free(name);
 	free(selection);
