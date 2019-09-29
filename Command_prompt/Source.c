@@ -1,8 +1,7 @@
 #include "Header.h"
 
-int main()
-{
-	Position root=(Position)malloc(sizeof(Tree));
+int main() {
+	Position root = (Position)malloc(sizeof(Tree));
 	Position curretDir = root;
 	Stack head;
 	char* name;
@@ -10,7 +9,7 @@ int main()
 	char* token;
 	char* buffer;
 	int i = VALID;
-	buffer = (char*)malloc(21 * sizeof(char));
+	buffer = (char*)malloc(MAX_SIZE * sizeof(char));
 	root->FChild = NULL;
 	root->NBrother = NULL;
 	root->name = (char*)malloc(5 * sizeof(char));
@@ -23,25 +22,48 @@ int main()
 		selection = token;
 		token = strtok(NULL, " ");
 		name = token;
-		if (strcmp(selection, "md") == OK)
-			MakeDirectory(curretDir, name);
-		else if (strcmp(selection, "cd") == OK)
+		if (strcmp(selection, "md") == OK) {
+			if (name == NULL) {
+				printf("The syntax of the command is incorrect.\n");
+			}
+			else {
+				MakeDirectory(curretDir, name);
+			}
+		}
+		else if (strcmp(selection, "cd") == OK) {
 			curretDir = ChangeDirectory(curretDir, &head, name);
-		else if (strcmp(selection, "cd..") == OK)
+		}
+		else if (strcmp(selection, "cd..") == OK) {
 			curretDir = popStack(&head, root);
-		else if (strcmp(selection, "dir") == OK)
+		}
+		else if (strcmp(selection, "dir") == OK) {
 			ListDirectory(curretDir, &head);
-		else if (strcmp(selection, "exit") == OK)
+		}
+		else if (strcmp(selection, "exit") == OK) {
 			i = INVALID;
-		else if (strcmp(selection, "help") == OK)
+		}
+		else if (strcmp(selection, "help") == OK) {
 			CallHelp();
-		else if (strcmp(selection, "rd") == OK)
-			RemoveDirectory(curretDir, name);
-		else if (strcmp(selection, "cls") == OK)
+		}
+		else if (strcmp(selection, "rd") == OK) {
+			if (name == NULL) {
+				printf("The syntax of the command is incorrect.\n");
+			}
+			else {
+				RemoveDirectory(curretDir, name);
+			}
+		}
+		else if (strcmp(selection, "cls") == OK) {
 			system("cls");
-		else
-			printf("'%s' is not recognized as an internal or external command, operable program or batch file. Type 'help'.\n", selection);
+		}
+		else {
+			printf(
+				"'%s' is not recognized as an internal or external command, operable "
+				"program or batch file. Type 'help'.\n",
+				selection);
+		}
 		printf("\n");
+		//memset(buffer, '\0', MAX_SIZE);
 	}
 	GarbageCollector(root);
 	free(name);

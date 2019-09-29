@@ -28,7 +28,8 @@ int MakeDirectory(Position Tree, char* name) {
 	if (Tree->FChild == NULL) {
 		Tree->FChild = q;
 		return OK;
-	} else if (strcmp(q->name, x->name) < 0 || strcmp(q->name, x->name) == 0) {
+	}
+	else if (strcmp(q->name, x->name) < 0 || strcmp(q->name, x->name) == 0) {
 		if (strcmp(q->name, x->name) == 0) {
 			printf("A subdirectory or file %s already exists.\n", x->name);
 			GarbageCollector(q);
@@ -37,7 +38,8 @@ int MakeDirectory(Position Tree, char* name) {
 		q->NBrother = x;
 		Tree->FChild = q;
 		return OK;
-	} else {
+	}
+	else {
 		while (x->NBrother != NULL && strcmp(q->name, x->NBrother->name) > 0)
 			x = x->NBrother;
 		if (x->NBrother != NULL && strcmp(q->name, x->NBrother->name) == 0) {
@@ -53,6 +55,10 @@ int MakeDirectory(Position Tree, char* name) {
 
 Position ChangeDirectory(Position curretDir, position stack, char* name) {
 	Position x = curretDir->FChild;
+	if (name == NULL) {
+		return curretDir;
+	}
+
 	while (x != NULL && strcmp(x->name, name) != OK)
 		x = x->NBrother;
 	if (x == NULL) {
@@ -134,25 +140,26 @@ int PrintDirectoryF(position stack) {
 	return OK;
 }
 
-int RemoveDirectory(Position CurrentDirectory,char* name) {
+int RemoveDirectory(Position CurrentDirectory, char* name) {
 	Position x = CurrentDirectory->FChild;
 	Position tmp = NULL;
 	if (x != NULL && strcmp(x->name, name) == OK) {
 		CurrentDirectory->FChild = x->NBrother;
-		x->NBrother = NULL;
+		x = NULL;
 		GarbageCollector(x);
 		return OK;
 	}
 	while (x != NULL && x->NBrother != NULL && strcmp(x->NBrother->name, name) != OK)
 		x = x->NBrother;
-	if (x == NULL || strcmp(x->name, name) != OK) {
+	if (x == NULL || x->NBrother==NULL || strcmp(x->NBrother->name, name) != OK) {
 		printf("The system cannot find the file specified.\n", name);
 		return NOT_VALID;
-	} else {
+	}
+	else {
 		tmp = x->NBrother;
 		x->NBrother = tmp->NBrother;
 		tmp->NBrother = NULL;
-		GarbageCollector(tmp);	
+		GarbageCollector(tmp);
 	}
 	return OK;
 }
