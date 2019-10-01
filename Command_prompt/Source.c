@@ -54,6 +54,7 @@ int main() {
 		}
 		printf("\n");
 	}
+
 	GarbageCollector(root);
 	free(name);
 	free(selection);
