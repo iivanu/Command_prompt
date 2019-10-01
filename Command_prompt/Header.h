@@ -6,12 +6,7 @@
 #define VALID 1
 #define INVALID 0
 #define OK 0
-<<<<<<< HEAD
-#define EXIT_SUCCESS 0
-#define NOT_VALID -1
-=======
 #define NOT_OK -1
->>>>>>> Minor bug fix and code style
 #define MAX_SIZE 1024
 struct _tree;
 typedef struct _tree* Position;

@@ -53,7 +53,6 @@ int main() {
 				selection);
 		}
 		printf("\n");
-		//memset(buffer, '\0', MAX_SIZE);
 	}
 	GarbageCollector(root);
 	free(name);

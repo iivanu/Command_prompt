@@ -153,16 +153,6 @@ int RemoveDirectory(Position CurrentDirectory, char* name) {
 		CurrentDirectory->FChild = x->NBrother;
 		x = NULL;
 		GarbageCollector(x);
-<<<<<<< HEAD
-		return OK;
-	}
-	while (x != NULL && x->NBrother != NULL && strcmp(x->NBrother->name, name) != OK)
-		x = x->NBrother;
-	if (x == NULL || x->NBrother==NULL || strcmp(x->NBrother->name, name) != OK) {
-		printf("The system cannot find the file specified.\n", name);
-		return NOT_VALID;
-=======
->>>>>>> Minor bug fix and code style
 	}
 	else {
 		while (x != NULL && x->NBrother != NULL && strcmp(x->NBrother->name, name) != OK)
