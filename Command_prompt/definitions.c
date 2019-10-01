@@ -171,5 +171,3 @@ int RemoveDirectory(Position CurrentDirectory, char* name) {
 	}
 	return OK;
 }
-
-
