@@ -58,5 +58,6 @@ int main() {
 	free(name);
 	free(selection);
 	free(token);
+	free(buffer);
 	return OK;
 }
