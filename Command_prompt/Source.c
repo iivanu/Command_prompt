@@ -23,12 +23,7 @@ int main() {
 		token = strtok(NULL, " ");
 		name = token;
 		if (strcmp(selection, "md") == OK) {
-			if (name == NULL) {
-				printf("The syntax of the command is incorrect.\n");
-			}
-			else {
-				MakeDirectory(curretDir, name);
-			}
+			MakeDirectory(curretDir, name);
 		}
 		else if (strcmp(selection, "cd") == OK) {
 			curretDir = ChangeDirectory(curretDir, &head, name);
@@ -46,12 +41,7 @@ int main() {
 			CallHelp();
 		}
 		else if (strcmp(selection, "rd") == OK) {
-			if (name == NULL) {
-				printf("The syntax of the command is incorrect.\n");
-			}
-			else {
-				RemoveDirectory(curretDir, name);
-			}
+			RemoveDirectory(curretDir, name);
 		}
 		else if (strcmp(selection, "cls") == OK) {
 			system("cls");
@@ -69,5 +59,5 @@ int main() {
 	free(name);
 	free(selection);
 	free(token);
-	return EXIT_SUCCESS;
+	return OK;
 }
