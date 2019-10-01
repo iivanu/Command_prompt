@@ -17,6 +17,7 @@ position AllocationStack() {
 		printf("Memory not allocated!!\n");
 		return NULL;
 	}
+	q->Next = NULL;
 	return q;
 }
 
@@ -32,14 +33,14 @@ int MakeDirectory(Position Tree, char* name) {
 	if (Tree->FChild == NULL) {
 		Tree->FChild = q;
 	}
-	else if (strcmp(q->name, x->name) < 0 || strcmp(q->name, x->name) == 0) {
-		if (strcmp(q->name, x->name) == 0) {
-			printf("A subdirectory or file %s already exists.\n", x->name);
-			GarbageCollector(q);
-			return NOT_OK;
-		}
+	else if (strcmp(q->name, x->name) < 0) {
 		q->NBrother = x;
 		Tree->FChild = q;
+	}
+	else if (strcmp(q->name, x->name) == 0) {
+		printf("A subdirectory or file %s already exists.\n", x->name);
+		GarbageCollector(q);
+		return NOT_OK;
 	}
 	else {
 		while (x->NBrother != NULL && strcmp(q->name, x->NBrother->name) > 0)
