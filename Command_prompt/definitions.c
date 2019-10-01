@@ -23,21 +23,23 @@ position AllocationStack() {
 int MakeDirectory(Position Tree, char* name) {
 	Position q = AllocationTree();
 	Position x = Tree->FChild;
+	if (name == NULL) {
+		printf("The syntax of the command is incorrect.\n");
+		return NOT_OK;
+	}
 	q->name = (char*)malloc(strlen(name) + 1);
 	strcpy(q->name, name);
 	if (Tree->FChild == NULL) {
 		Tree->FChild = q;
-		return OK;
 	}
 	else if (strcmp(q->name, x->name) < 0 || strcmp(q->name, x->name) == 0) {
 		if (strcmp(q->name, x->name) == 0) {
 			printf("A subdirectory or file %s already exists.\n", x->name);
 			GarbageCollector(q);
-			return OK;
+			return NOT_OK;
 		}
 		q->NBrother = x;
 		Tree->FChild = q;
-		return OK;
 	}
 	else {
 		while (x->NBrother != NULL && strcmp(q->name, x->NBrother->name) > 0)
@@ -45,7 +47,7 @@ int MakeDirectory(Position Tree, char* name) {
 		if (x->NBrother != NULL && strcmp(q->name, x->NBrother->name) == 0) {
 			printf("A subdirectory or file %s already exists.\n", x->NBrother->name);
 			GarbageCollector(q);
-			return OK;
+			return NOT_OK;
 		}
 		q->NBrother = x->NBrother;
 		x->NBrother = q;
@@ -101,7 +103,7 @@ int ListDirectory(Position tree, position stack) {
 
 int GarbageCollector(Position P) {
 	if (P == NULL)
-		return NOT_VALID;
+		return NOT_OK;
 	else if (P->FChild != NULL)
 		GarbageCollector(P->FChild);
 	else if (P->NBrother != NULL)
@@ -143,10 +145,15 @@ int PrintDirectoryF(position stack) {
 int RemoveDirectory(Position CurrentDirectory, char* name) {
 	Position x = CurrentDirectory->FChild;
 	Position tmp = NULL;
-	if (x != NULL && strcmp(x->name, name) == OK) {
+	if (name == NULL) {
+		printf("The syntax of the command is incorrect.\n");
+		return NOT_OK;
+	}
+	else if (x != NULL && strcmp(x->name, name) == OK) {
 		CurrentDirectory->FChild = x->NBrother;
 		x = NULL;
 		GarbageCollector(x);
+<<<<<<< HEAD
 		return OK;
 	}
 	while (x != NULL && x->NBrother != NULL && strcmp(x->NBrother->name, name) != OK)
@@ -154,12 +161,22 @@ int RemoveDirectory(Position CurrentDirectory, char* name) {
 	if (x == NULL || x->NBrother==NULL || strcmp(x->NBrother->name, name) != OK) {
 		printf("The system cannot find the file specified.\n", name);
 		return NOT_VALID;
+=======
+>>>>>>> Minor bug fix and code style
 	}
 	else {
-		tmp = x->NBrother;
-		x->NBrother = tmp->NBrother;
-		tmp->NBrother = NULL;
-		GarbageCollector(tmp);
+		while (x != NULL && x->NBrother != NULL && strcmp(x->NBrother->name, name) != OK)
+			x = x->NBrother;
+		if (x == NULL || x->NBrother == NULL || strcmp(x->NBrother->name, name) != OK) {
+			printf("The system cannot find the file specified.\n", name);
+			return NOT_OK;
+		}
+		else {
+			tmp = x->NBrother;
+			x->NBrother = tmp->NBrother;
+			tmp->NBrother = NULL;
+			GarbageCollector(tmp);
+		}
 	}
 	return OK;
 }
