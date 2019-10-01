@@ -55,6 +55,10 @@ int MakeDirectory(Position Tree, char* name) {
 
 Position ChangeDirectory(Position curretDir, position stack, char* name) {
 	Position x = curretDir->FChild;
+	if (name == NULL) {
+		return curretDir;
+	}
+
 	while (x != NULL && strcmp(x->name, name) != OK)
 		x = x->NBrother;
 	if (x == NULL) {
@@ -141,13 +145,13 @@ int RemoveDirectory(Position CurrentDirectory, char* name) {
 	Position tmp = NULL;
 	if (x != NULL && strcmp(x->name, name) == OK) {
 		CurrentDirectory->FChild = x->NBrother;
-		x->NBrother = NULL;
+		x = NULL;
 		GarbageCollector(x);
 		return OK;
 	}
 	while (x != NULL && x->NBrother != NULL && strcmp(x->NBrother->name, name) != OK)
 		x = x->NBrother;
-	if (x == NULL || strcmp(x->name, name) != OK) {
+	if (x == NULL || x->NBrother==NULL || strcmp(x->NBrother->name, name) != OK) {
 		printf("The system cannot find the file specified.\n", name);
 		return NOT_VALID;
 	}

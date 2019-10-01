@@ -8,6 +8,7 @@
 #define OK 0
 #define EXIT_SUCCESS 0
 #define NOT_VALID -1
+#define MAX_SIZE 1024
 struct _tree;
 typedef struct _tree* Position;
 typedef struct _tree {

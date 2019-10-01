@@ -9,7 +9,7 @@ int main() {
 	char* token;
 	char* buffer;
 	int i = VALID;
-	buffer = (char*)malloc(21 * sizeof(char));
+	buffer = (char*)malloc(MAX_SIZE * sizeof(char));
 	root->FChild = NULL;
 	root->NBrother = NULL;
 	root->name = (char*)malloc(5 * sizeof(char));
@@ -63,6 +63,7 @@ int main() {
 				selection);
 		}
 		printf("\n");
+		//memset(buffer, '\0', MAX_SIZE);
 	}
 	GarbageCollector(root);
 	free(name);
