@@ -142,8 +142,12 @@
     <ClInclude Include="Header.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="definitions.c" />
+    <ClCompile Include="allocation.c" />
+    <ClCompile Include="commands.c" />
+    <ClCompile Include="garbagecollector.c" />
+    <ClCompile Include="print.c" />
     <ClCompile Include="Source.c" />
+    <ClCompile Include="stack.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
