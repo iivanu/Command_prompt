@@ -21,12 +21,17 @@ int main() {
 	while (*running != INVALID) {
 		buffer = (char*)malloc(MAX_SIZE * sizeof(char));
 		PrintDirectory(curretDir, head);
-		scanf(" %[^\n]", buffer);
-		token = strtok(buffer, " ");
-		selection = token;
-		token = strtok(NULL, " ");
-		name = token;
-		if (strcmp(selection, "md") == OK) {
+		fgets(buffer, MAX_SIZE, stdin);
+		if (strlen(buffer) > 1) {
+			buffer[strlen(buffer) - 1] = '\0';
+			token = strtok(buffer, " ");
+			selection = token;
+			token = strtok(NULL, " ");
+			name = token;
+		}
+		if (strcmp(buffer, "\n") == OK) {
+		}
+		else if (strcmp(selection, "md") == OK) {
 			MakeDirectory(curretDir, name);
 		}
 		else if (strcmp(selection, "cd") == OK) {
@@ -61,7 +66,6 @@ int main() {
 	}
 	GarbageCollector(root);
 	GarbageCollectorStack(head);
-	free(name);
 	free(running);
 	return OK;
 }
