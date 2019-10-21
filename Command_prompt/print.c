@@ -8,14 +8,18 @@ int PrintDirectory(Position currentDir, position stack) {
 	}
 	PrintDirectoryF(stack->Next);
 	printf("%s>", currentDir->name);
+	return OK;
 }
 
 int PrintDirectoryF(position stack) {
-	if (stack->Next != NULL)
+	if (stack->Next != NULL) {
 		PrintDirectoryF(stack->Next);
-	if (strcmp(stack->tree->name, "C") == OK)
+	}
+	if (strcmp(stack->tree->name, "C") == OK) {
 		printf("%s:\\", stack->tree->name);
-	else
+	}
+	else {
 		printf("%s\\", stack->tree->name);
+	}
 	return OK;
 }

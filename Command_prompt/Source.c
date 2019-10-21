@@ -2,14 +2,16 @@
 
 // Main function
 int main() {
-	Position root = (Position)malloc(sizeof(Tree));
-	Position curretDir = root;
+	Position root = NULL;
+	Position curretDir = NULL;
 	position head = NULL;
 	char* name;
 	char* selection;
 	char* token;
 	char* buffer;
 	int* running = NULL;
+	root = (Position)malloc(sizeof(Tree));
+	curretDir = root;
 	root->FChild = NULL;
 	root->NBrother = NULL;
 	root->name = (char*)malloc(5 * sizeof(char));
